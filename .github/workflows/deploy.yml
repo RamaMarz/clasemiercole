@@ -1,0 +1,19 @@
+name: Despliegue con Secreto
+
+on: [push]
+
+jobs:
+  despliegue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Ejecutar despliegue seguro
+        env:
+          TOKEN: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          echo "Conectando al servidor con credencial protegida..."
+          echo "Token recibido: $TOKEN"
+          echo "Despliegue finalizado con exito."
